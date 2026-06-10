@@ -104,17 +104,24 @@ def compute_student_fit(profile, prog):
 
 
 def compute_mcdm_score(sbert_score, qs_score, cost_of_living_index, student_fit):
+    # AHP-derived weights (CR = 0.045, consistent)
+    # Pairwise: Semantic vs QS=7, Semantic vs Afford=5, Semantic vs Fit=3,
+    # QS vs Afford=1, QS vs Fit=1/5, Afford vs Fit=1/5
+    W_SEMANTIC      = 0.5488
+    W_QS            = 0.0714
+    W_AFFORDABILITY = 0.0799
+    W_STUDENT_FIT   = 0.3000
+
     qs_normalised = round(min(float(qs_score or 30.0) / 100.0, 1.0), 4)
     affordability = round(1 - min(float(cost_of_living_index or 60.0) / 100.0, 1.0), 4)
 
     mcdm_score = round(
-        0.55 * sbert_score +
-        0.15 * qs_normalised +
-        0.10 * affordability +
-        0.20 * student_fit,
+        W_SEMANTIC      * sbert_score +
+        W_QS            * qs_normalised +
+        W_AFFORDABILITY * affordability +
+        W_STUDENT_FIT   * student_fit,
         4
     )
-
     return mcdm_score, qs_normalised, affordability
 
 
