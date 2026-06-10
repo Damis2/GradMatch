@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+data/gradmatch.db
+models/
+*.pt
+*.bin
+*.pkl
+sentence_transformers/
