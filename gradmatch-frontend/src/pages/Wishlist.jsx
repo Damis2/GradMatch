@@ -25,7 +25,7 @@ function Wishlist() {
 
   useEffect(() => {
     if (!user) { navigate('/login'); return }
-    fetch(`http://localhost:5000/api/wishlist?user_id=${user.user_id}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/wishlist?user_id=${user.user_id}`)
       .then(res => res.json())
       .then(data => {
         if (data.error) setError(data.error)
@@ -36,7 +36,7 @@ function Wishlist() {
   }, [user, navigate])
 
   const removeFromWishlist = (wishlistId) => {
-    fetch(`http://localhost:5000/api/wishlist/${wishlistId}`, { method: 'DELETE' })
+    fetch(`${process.env.REACT_APP_API_URL}/api/wishlist/${wishlistId}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -48,7 +48,7 @@ function Wishlist() {
   }
 
   const addToTracker = (item) => {
-    fetch('http://localhost:5000/api/tracker', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/tracker`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -188,3 +188,4 @@ function Wishlist() {
 }
 
 export default Wishlist
+

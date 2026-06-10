@@ -7,7 +7,7 @@ from database import get_connection
 from recommender import recommend
 
 app = Flask(__name__)
-CORS(app, origins=['http://localhost:3000', 'http://127.0.0.1:3000'])
+CORS(app)
 
 
 # ─── helpers ────────────────────────────────────────────────────────────────

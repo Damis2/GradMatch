@@ -38,7 +38,7 @@ function Tracker() {
 
   useEffect(() => {
     if (!user) { navigate('/login'); return }
-    fetch('http://localhost:5000/api/tracker?user_id=' + user.user_id)
+    fetch(`${process.env.REACT_APP_API_URL}/api/tracker?user_id=` + user.user_id)
       .then(res => res.json())
       .then(data => {
         if (data.error) setError(data.error)
@@ -54,7 +54,7 @@ function Tracker() {
   }
 
   const saveEdit = (trackerId) => {
-    fetch('http://localhost:5000/api/tracker/' + trackerId, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/tracker/` + trackerId, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(editForm)
@@ -75,7 +75,7 @@ function Tracker() {
   }
 
   const removeFromTracker = (trackerId) => {
-    fetch('http://localhost:5000/api/tracker/' + trackerId, { method: 'DELETE' })
+    fetch(`${process.env.REACT_APP_API_URL}/api/tracker/` + trackerId, { method: 'DELETE' })
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -257,3 +257,4 @@ function Tracker() {
 }
 
 export default Tracker
+

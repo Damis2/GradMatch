@@ -63,7 +63,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (!user) { navigate('/login'); return }
-    fetch(`http://localhost:5000/api/dashboard/${user.user_id}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/dashboard/${user.user_id}`)
       .then(r => r.json())
       .then(d => { if (d?.stats) setData(d); setLoading(false) })
       .catch(() => setLoading(false))
@@ -318,3 +318,4 @@ function Dashboard() {
 }
 
 export default Dashboard
+

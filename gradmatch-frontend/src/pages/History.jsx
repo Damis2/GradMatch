@@ -20,7 +20,7 @@ function History() {
 
   useEffect(() => {
     if (!user) { navigate('/login'); return }
-    fetch('http://localhost:5000/api/history/' + user.user_id)
+    fetch(`${process.env.REACT_APP_API_URL}/api/history/` + user.user_id)
       .then(res => res.json())
       .then(data => {
         if (data.error) setError(data.error)
@@ -197,3 +197,4 @@ function History() {
 }
 
 export default History
+

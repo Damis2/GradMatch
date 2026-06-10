@@ -42,7 +42,7 @@ function Results() {
     if (!user) { navigate('/login'); return }
     setSavingId(programmeId)
     try {
-      const res = await fetch('http://localhost:5000/api/wishlist', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/wishlist`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.user_id, programme_id: programmeId })
@@ -249,3 +249,4 @@ function Results() {
 }
 
 export default Results
+
