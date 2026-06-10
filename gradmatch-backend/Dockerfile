@@ -1,2 +1,14 @@
-cd "C:\Users\quade\OneDrive\Documents\MY PROJECT\TESTCASE\gradmatch-backend"
-Set-Content -Path "Dockerfile" -Value "FROM python:3.11-slim`n`nWORKDIR /app`n`nCOPY requirements.txt .`nRUN pip install --no-cache-dir -r requirements.txt`n`nCOPY . .`n`nEXPOSE 8080`n`nENV PORT=8080`n`nCMD [""gunicorn"", ""--bind"", ""0.0.0.0:8080"", ""--timeout"", ""120"", ""app:app""]"
+﻿FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8080
+
+ENV PORT=8080
+
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--timeout", "120", "app:app"]
