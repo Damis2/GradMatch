@@ -9,3 +9,4 @@ models/
 *.bin
 *.pkl
 sentence_transformers/
+data/gradmatch.db
